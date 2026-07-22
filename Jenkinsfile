@@ -16,7 +16,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git credentialsId: 'github-credentials',
-                    url: 'URL_DE_TON_DEPOT_GITHUB',
+                    url: 'https://github.com/MedAzizBenSaid/Stage_DevSecOps.git',
                     branch: 'main'
             }
         }
