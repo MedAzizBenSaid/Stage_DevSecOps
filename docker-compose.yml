@@ -1,0 +1,71 @@
+version: "3.9"
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+
+    restart: always
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: student_management_db
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+    networks:
+      - student-network
+
+
+  backend:
+    build:
+      context: ./backend
+
+    image: backend:v1
+
+    container_name: backend
+
+    restart: always
+
+    depends_on:
+      - mysql
+
+    ports:
+      - "8081:8081"
+
+    networks:
+      - student-network
+
+
+  frontend:
+    build:
+      context: ./frontend
+
+    image: frontend:v1
+
+    container_name: frontend
+
+    restart: always
+
+    depends_on:
+      - backend
+
+    ports:
+      - "4200:80"
+
+    networks:
+      - student-network
+
+
+volumes:
+  mysql-data:
+
+
+networks:
+  student-network:
+    driver: bridge
