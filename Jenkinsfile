@@ -17,7 +17,7 @@ pipeline {
             steps {
                 git credentialsId: 'github-credentials',
                     url: 'https://github.com/MedAzizBenSaid/Stage_DevSecOps.git',
-                    branch: 'master'
+                    branch: 'main'
             }
         }
 
