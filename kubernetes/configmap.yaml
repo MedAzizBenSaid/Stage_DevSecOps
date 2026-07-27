@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: mysql-config
+  namespace: student-management
+
+data:
+  MYSQL_DATABASE: student_management_db
+
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql-service:3306/student_management_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+
+  SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
