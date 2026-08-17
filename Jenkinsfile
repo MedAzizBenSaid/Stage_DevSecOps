@@ -39,7 +39,29 @@ pipeline {
                 }
             }
         }
+        stage('Analyse SonarQube') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    withCredentials([string(
+                        credentialsId: 'sonarqube-token',
+                        variable: 'SONAR_TOKEN'
+                    )]) {
+                        sh '''
+                            /opt/sonar-scanner/bin/sonar-scanner \
+                            -Dsonar.token="$SONAR_TOKEN"
+                        '''
+                    }
+                }
+            }
+        }
 
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
         stage('Création images Docker') {
             steps {
                 sh 'docker build -t student-management-frontend:latest ./frontend'
