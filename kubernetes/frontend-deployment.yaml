@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: 192.168.93.142:8082/student-management-frontend:latest
+          image: 172.20.10.5:8082/student-management-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
