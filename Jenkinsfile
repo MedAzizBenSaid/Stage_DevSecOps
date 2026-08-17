@@ -80,6 +80,33 @@ pipeline {
                 '''
             }
         }
+        stage('Scan Trivy - Frontend') {
+            steps {
+                sh '''
+                    echo "===== Scan sécurité Frontend ====="
+
+                    trivy image \
+                      --timeout 30m \
+                      --severity HIGH,CRITICAL \
+                      --exit-code 1 \
+                      172.20.10.5:8082/student-management-frontend:latest
+                '''
+            }
+        }
+
+        stage('Scan Trivy - Backend') {
+            steps {
+                sh '''
+                    echo "===== Scan sécurité Backend ====="
+
+                    trivy image \
+                      --timeout 30m \
+                      --severity HIGH,CRITICAL \
+                      --exit-code 1 \
+                      172.20.10.5:8082/student-management-backend:latest
+                '''
+            }
+        }
 
         stage('Push des images vers Nexus') {
             steps {
