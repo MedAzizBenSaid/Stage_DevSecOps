@@ -22,9 +22,9 @@
         <java.version>17</java.version>
 
         <jackson.version>2.21.4</jackson.version>
+        <spring-data-commons.version>3.5.12</spring-data-commons.version>
         <tomcat.version>10.1.55</tomcat.version>
         <spring-framework.version>6.2.19</spring-framework.version>
-        <spring-data-commons.version>3.5.12</spring-data-commons.version>
     </properties>
 
     <dependencies>
