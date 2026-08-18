@@ -1,7 +1,7 @@
 # ==========================
 # Étape 1 : Image finale
 # ==========================
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:17-jre-noble
 
 # Définir le répertoire de travail
 WORKDIR /app
