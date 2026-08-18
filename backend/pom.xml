@@ -21,11 +21,20 @@
     <properties>
         <java.version>17</java.version>
 
-        <jackson.version>2.21.4</jackson.version>
-        <spring-data-commons.version>3.5.12</spring-data-commons.version>
+        <jackson-bom.version>2.21.4</jackson-bom.version>
         <tomcat.version>10.1.55</tomcat.version>
         <spring-framework.version>6.2.19</spring-framework.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-commons</artifactId>
+                <version>3.5.12</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Permet de créer des API REST (Controllers, @RestController, etc.) -->
