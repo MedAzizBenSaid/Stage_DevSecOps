@@ -3,11 +3,20 @@ kind: Ingress
 metadata:
   name: student-management-ingress
   namespace: student-management
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
+          - path: /api(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 8081
           - path: /
             pathType: Prefix
             backend:
